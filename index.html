@@ -362,7 +362,7 @@ async function doSearch() {
   container.innerHTML = '';
 
   try {
-    const res = await fetch(`https://api.calorieninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`, {
+    const res = await fetch(`https://api.api-ninjas.com/v1/nutrition?query=${encodeURIComponent(query)}`, {
       headers: { 'X-Api-Key': API_KEY }
     });
     const data = await res.json();
