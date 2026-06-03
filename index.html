@@ -139,14 +139,65 @@
     .input-field:focus{border-color:var(--pink)}
     .input-field::placeholder{color:var(--text-muted)}
     .input-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .modal-add-btn{width:100%;background:var(--navy);color:var(--text);border:none;border-radius:var(--radius-sm);padding:14px;font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;transition:background 0.2s;margin-top:4px}
-    .modal-add-btn:hover{background:var(--navy-dark)}
+    .modal-add-btn{width:100%;background:var(--pink);color:#3a0a28;border:none;border-radius:var(--radius-sm);padding:14px;font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;transition:background 0.2s;margin-top:4px}
+    .modal-add-btn:hover{background:var(--pink-dark);color:#fff}
     /* Settings */
     .settings-modal{background:var(--surface);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:430px;border-top:1px solid var(--border);animation:slideUp 0.3s ease}
     .goal-display{text-align:center;padding:20px 0;font-size:48px;font-weight:600;color:var(--pink);font-family:var(--mono)}
     .goal-sub{text-align:center;font-size:13px;color:var(--text-muted);margin-top:-12px;margin-bottom:20px}
     .goal-slider{width:100%;margin:16px 0;accent-color:var(--pink)}
     .goal-range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted)}
+    /* Full page overlay */
+    .fullpage{position:fixed;inset:0;background:var(--bg);z-index:150;display:flex;flex-direction:column;max-width:430px;margin:0 auto;animation:slideInRight 0.3s ease}
+    @keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+    .fullpage-header{display:flex;align-items:center;justify-content:space-between;padding:52px 20px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0}
+    .fullpage-title{font-size:17px;font-weight:600;color:var(--text);text-align:center}
+    .back-btn{background:none;border:none;color:var(--pink);font-size:14px;font-weight:600;font-family:var(--font);cursor:pointer;padding:4px 0;width:80px;text-align:left}
+    .back-btn:hover{opacity:0.8}
+    .fullpage-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:8px}
+    .fullpage-empty{text-align:center;padding:60px 20px;color:var(--text-muted);font-size:14px}
+    .all-suggestion-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.15s}
+    .all-suggestion-card:hover{border-color:var(--pink)}
+    .all-suggestion-rank{font-size:18px;width:28px;text-align:center;flex-shrink:0}
+    .all-suggestion-info{flex:1;min-width:0}
+    .all-suggestion-name{font-size:14px;font-weight:600;color:var(--text)}
+    .all-suggestion-meta{font-size:12px;color:var(--text-muted);margin-top:3px}
+    .all-suggestion-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+    .all-suggestion-cal{font-size:14px;font-weight:700;color:var(--pink);font-family:var(--mono)}
+    .all-suggestion-add{background:var(--pink);color:#3a0a28;border:none;border-radius:6px;padding:5px 12px;font-size:12px;font-weight:700;font-family:var(--font);cursor:pointer}
+    .all-suggestion-add:hover{background:var(--pink-dark);color:#fff}
+    /* Toast */
+    .toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a3a1a;border:1px solid var(--pink);color:#fff;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;font-family:var(--font);opacity:0;transition:opacity 0.3s,transform 0.3s;pointer-events:none;z-index:300;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    /* Suggestions */
+    .see-all-btn{font-size:12px;color:var(--pink);cursor:pointer;font-weight:600}
+    .suggestions-grid{display:flex;flex-direction:column;gap:7px;margin-bottom:8px}
+    .suggestion-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color 0.15s}
+    .suggestion-card:hover{border-color:var(--pink)}
+    .suggestion-card:active{transform:scale(0.98)}
+    .suggestion-icon{font-size:20px;flex-shrink:0}
+    .suggestion-info{flex:1;min-width:0}
+    .suggestion-name{font-size:13px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .suggestion-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+    .suggestion-cal{font-size:13px;font-weight:700;color:var(--pink);font-family:var(--mono);flex-shrink:0}
+    .suggestion-add{background:var(--pink);color:#3a0a28;border:none;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;font-family:var(--font);cursor:pointer;flex-shrink:0}
+    /* Vietnamese Quick Add */
+    .viet-section{margin-bottom:4px}
+    .viet-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
+    .viet-grid{display:flex;flex-direction:column;gap:10px}
+    .viet-cat{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+    .viet-cat-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;user-select:none}
+    .viet-cat-header:hover{background:rgba(246,178,215,0.06)}
+    .viet-cat-title{font-size:13px;font-weight:600;color:var(--text)}
+    .viet-cat-arrow{font-size:10px;color:var(--pink)}
+    .viet-cat-items{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+    .viet-card{background:var(--surface);padding:10px 12px;cursor:pointer;transition:background 0.15s;display:flex;justify-content:space-between;align-items:center;gap:6px}
+    .viet-card:hover{background:rgba(246,178,215,0.06)}
+    .viet-card:active{background:rgba(246,178,215,0.12)}
+    .viet-card-left{flex:1;min-width:0}
+    .viet-card-name{font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .viet-card-sub{font-size:10px;color:var(--text-muted);margin-top:2px}
+    .viet-card-cal{font-size:12px;font-weight:700;color:var(--pink);font-family:var(--mono);flex-shrink:0}
     /* History */
     .nav-btn{background:var(--surface2);color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all 0.2s;white-space:nowrap}
     .nav-btn:hover{border-color:var(--pink);color:var(--pink)}
@@ -221,6 +272,14 @@
   <div class="macro-card"><div class="macro-val" id="macro-fat">0g</div><div class="macro-lbl">Fat</div><div class="macro-bar"><div class="macro-fill" id="bar-fat" style="width:0%;background:#B5D4F4"></div></div></div>
 </div>
 
+<div class="section" id="suggestions-section" style="display:none">
+  <div class="section-header">
+    <span class="section-title">Hay ăn lại 🔁</span>
+    <span class="see-all-btn" onclick="openAllSuggestions()">Xem thêm →</span>
+  </div>
+  <div class="suggestions-grid" id="suggestions-grid"></div>
+</div>
+
 <div class="section">
   <div class="section-header">
     <span class="section-title">Today's meals</span>
@@ -243,6 +302,14 @@
     <div class="modal-handle"></div>
     <div class="modal-title">Log a meal</div>
     <div class="modal-subtitle">Search ingredients and adjust weight, or enter manually</div>
+
+    <!-- Vietnamese Quick Add -->
+    <div class="viet-section">
+      <div class="viet-label">🇻🇳 Món Việt hay ăn</div>
+      <div class="viet-grid" id="viet-grid"></div>
+    </div>
+
+    <div class="divider"><div class="divider-line"></div><div class="divider-text">hoặc tìm nguyên liệu</div><div class="divider-line"></div></div>
 
     <!-- Search -->
     <div class="search-wrap">
@@ -304,6 +371,9 @@
   </div>
 </div>
 
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
 <!-- History Modal -->
 <div class="modal-backdrop" id="history-modal" onclick="closeOnBackdrop(event,'history-modal')">
   <div class="modal" style="max-height:92vh">
@@ -312,6 +382,16 @@
     <div class="modal-subtitle">Nhật ký các ngày trước</div>
     <div id="history-list"></div>
   </div>
+</div>
+
+<!-- All Suggestions Page -->
+<div class="fullpage" id="all-suggestions-page" style="display:none">
+  <div class="fullpage-header">
+    <button class="back-btn" onclick="closeAllSuggestions()">← Quay lại</button>
+    <div class="fullpage-title">Hay ăn lại 🔁</div>
+    <div style="width:80px"></div>
+  </div>
+  <div class="fullpage-body" id="all-suggestions-body"></div>
 </div>
 
 <!-- Celebration Modal -->
@@ -345,6 +425,231 @@
 
 <script>
 const USDA_KEY='9yQeg5sYXrk56hNBnGAWhJYGUxEBg2JPcaOds7WI';
+
+const VIET_CATEGORIES=[
+  {
+    cat:'🍜 Bún & Phở',
+    foods:[
+      {name:'Phở bò',sub:'1 tô lớn',cal:450,p:28,c:55,f:10},
+      {name:'Bún bò Huế',sub:'1 tô',cal:480,p:30,c:52,f:14},
+      {name:'Bún thịt nướng',sub:'1 tô',cal:520,p:28,c:62,f:14},
+      {name:'Bún riêu cua',sub:'1 tô',cal:420,p:22,c:52,f:10},
+      {name:'Bún chả',sub:'1 phần',cal:480,p:28,c:50,f:16},
+      {name:'Bún đậu mắm tôm',sub:'1 phần',cal:560,p:24,c:62,f:20},
+      {name:'Hủ tiếu Nam Vang',sub:'1 tô',cal:490,p:26,c:58,f:13},
+      {name:'Mì xào hải sản',sub:'1 đĩa',cal:540,p:24,c:65,f:16},
+    ]
+  },
+  {
+    cat:'🍚 Cơm & Xôi',
+    foods:[
+      {name:'Cơm tấm sườn',sub:'1 đĩa',cal:620,p:35,c:72,f:18},
+      {name:'Cơm trắng + thịt kho',sub:'1 phần',cal:550,p:30,c:65,f:16},
+      {name:'Cơm chiên dương châu',sub:'1 đĩa',cal:580,p:20,c:75,f:18},
+      {name:'Xôi gà',sub:'1 phần',cal:480,p:26,c:68,f:10},
+    ]
+  },
+  {
+    cat:'🥣 Cháo & Canh',
+    foods:[
+      {name:'Cháo gà',sub:'1 tô',cal:280,p:20,c:35,f:6},
+      {name:'Canh khổ qua',sub:'1 tô',cal:120,p:10,c:10,f:4},
+      {name:'Canh chua cá',sub:'1 tô',cal:220,p:22,c:18,f:7},
+    ]
+  },
+  {
+    cat:'🥟 Bánh & Cuốn',
+    foods:[
+      {name:'Bánh mì thịt',sub:'1 ổ',cal:380,p:18,c:45,f:12},
+      {name:'Bánh cuốn',sub:'1 phần',cal:320,p:14,c:48,f:7},
+      {name:'Bánh xèo',sub:'1 cái',cal:350,p:12,c:38,f:16},
+      {name:'Bánh căn',sub:'6 cái',cal:320,p:14,c:42,f:10},
+      {name:'Gỏi cuốn tôm thịt',sub:'2 cuốn',cal:190,p:12,c:24,f:4},
+      {name:'Gỏi cuốn thịt nướng',sub:'2 cuốn',cal:200,p:13,c:24,f:5},
+    ]
+  },
+  {
+    cat:'🍖 Món mặn',
+    foods:[
+      {name:'Gà kho xả',sub:'1 phần',cal:380,p:35,c:8,f:22},
+    ]
+  },
+];
+
+// Flatten for index-based quick add
+const VIET_FOODS=VIET_CATEGORIES.flatMap(c=>c.foods);
+
+let openCats={};
+
+function renderVietFoods(){
+  const grid=document.getElementById('viet-grid');
+  let html='';
+  let globalIdx=0;
+  VIET_CATEGORIES.forEach((cat,ci)=>{
+    const isOpen=openCats[ci]===true; // default closed
+    html+=`<div class="viet-cat">
+      <div class="viet-cat-header" onclick="toggleCat(${ci})">
+        <span class="viet-cat-title">${cat.cat}</span>
+        <span class="viet-cat-arrow" id="viet-arrow-${ci}">${isOpen?'▲':'▼'}</span>
+      </div>
+      <div class="viet-cat-items" id="viet-cat-${ci}" style="display:${isOpen?'grid':'none'}">`;
+    cat.foods.forEach(f=>{
+      html+=`<div class="viet-card" onclick="quickAddViet(${globalIdx})">
+        <div class="viet-card-left">
+          <div class="viet-card-name">${f.name}</div>
+          <div class="viet-card-sub">${f.sub}</div>
+        </div>
+        <div class="viet-card-cal">${f.cal}</div>
+      </div>`;
+      globalIdx++;
+    });
+    html+=`</div></div>`;
+  });
+  grid.innerHTML=html;
+}
+
+function toggleCat(ci){
+  const el=document.getElementById('viet-cat-'+ci);
+  const arrow=document.getElementById('viet-arrow-'+ci);
+  const isOpen=el.style.display!=='none';
+  el.style.display=isOpen?'none':'grid';
+  arrow.textContent=isOpen?'▼':'▲';
+  openCats[ci]=!isOpen;
+}
+
+function quickAddViet(i){
+  const f=VIET_FOODS[i];
+  const prevTotal=state.meals.reduce((s,m)=>s+m.cal,0);
+  state.meals.push({name:f.name+' ('+f.sub+')',cal:f.cal,p:f.p,c:f.c,f:f.f});
+  trackMeal(f.name+' ('+f.sub+')',f.cal,f.p,f.c,f.f);
+  saveState(state);
+  render();
+  renderSuggestions();
+  document.getElementById('modal').classList.remove('open');
+  showToast('✓ '+f.name+' đã được thêm!');
+  const newTotal=state.meals.reduce((s,m)=>s+m.cal,0);
+  if(prevTotal<state.goal && newTotal>=state.goal){
+    setTimeout(()=>showCelebration(newTotal),400);
+  }
+}
+
+// Meal frequency tracking
+function loadFrequency(){
+  const raw=localStorage.getItem('caltrack_freq');
+  return raw?JSON.parse(raw):{};
+}
+function saveFrequency(f){localStorage.setItem('caltrack_freq',JSON.stringify(f))}
+
+function trackMeal(name,cal,p,c,f){
+  const freq=loadFrequency();
+  const key=name.toLowerCase().trim();
+  if(freq[key]){
+    freq[key].count++;
+    freq[key].lastEaten=new Date().toDateString();
+  } else {
+    freq[key]={name,cal,p,c,f,count:1,lastEaten:new Date().toDateString()};
+  }
+  saveFrequency(freq);
+}
+
+function getTopMeals(limit=6){
+  const freq=loadFrequency();
+  return Object.values(freq)
+    .sort((a,b)=>b.count-a.count)
+    .slice(0,limit);
+}
+
+let showAllSuggestions=false;
+function openAllSuggestions(){
+  const all=getTopMeals(50);
+  const body=document.getElementById('all-suggestions-body');
+  const medals=['🥇','🥈','🥉'];
+  const icons=['🍜','🍚','🥗','🍖','🍳','🥩','🍝','🥘','🫕','🍲'];
+  if(!all.length){
+    body.innerHTML='<div class="fullpage-empty">Chưa có dữ liệu nào.<br>Ăn gì đi rồi sẽ có! 😄</div>';
+  } else {
+    body.innerHTML=all.map((m,i)=>`
+      <div class="all-suggestion-card">
+        <div class="all-suggestion-rank">${medals[i]||icons[i%icons.length]}</div>
+        <div class="all-suggestion-info">
+          <div class="all-suggestion-name">${m.name}</div>
+          <div class="all-suggestion-meta">Đã ăn ${m.count} lần · Lần cuối: ${m.lastEaten}</div>
+        </div>
+        <div class="all-suggestion-right">
+          <div class="all-suggestion-cal">${m.cal} kcal</div>
+          <button class="all-suggestion-add" onclick="logFromAllSuggestions(${i})">+ Thêm</button>
+        </div>
+      </div>`).join('');
+    body.dataset.meals=JSON.stringify(all);
+  }
+  document.getElementById('all-suggestions-page').style.display='flex';
+}
+
+function closeAllSuggestions(){
+  document.getElementById('all-suggestions-page').style.display='none';
+}
+
+function logFromAllSuggestions(i){
+  const meals=JSON.parse(document.getElementById('all-suggestions-body').dataset.meals||'[]');
+  const m=meals[i];
+  if(!m) return;
+  const prevTotal=state.meals.reduce((s,meal)=>s+meal.cal,0);
+  state.meals.push({name:m.name,cal:m.cal,p:m.p||0,c:m.c||0,f:m.f||0});
+  trackMeal(m.name,m.cal,m.p||0,m.c||0,m.f||0);
+  saveState(state);
+  render();
+  renderSuggestions();
+  closeAllSuggestions();
+  showToast('✓ '+m.name+' đã được thêm!');
+  const newTotal=state.meals.reduce((s,meal)=>s+meal.cal,0);
+  if(prevTotal<state.goal && newTotal>=state.goal){
+    setTimeout(()=>showCelebration(newTotal),400);
+  }
+}
+
+function renderSuggestions(){
+  const top=getTopMeals(4);
+  const section=document.getElementById('suggestions-section');
+  const grid=document.getElementById('suggestions-grid');
+  if(!top.length){section.style.display='none';return;}
+  section.style.display='block';
+  const icons=['🍜','🍚','🥗','🍖','🍳','🥩','🍝','🥘','🫕','🍲'];
+  grid.innerHTML=top.map((m,i)=>`
+    <div class="suggestion-card" onclick="logSuggestion(${i})">
+      <div class="suggestion-icon">${icons[i%icons.length]}</div>
+      <div class="suggestion-info">
+        <div class="suggestion-name">${m.name}</div>
+        <div class="suggestion-meta">Đã ăn ${m.count} lần · ${m.cal} kcal</div>
+      </div>
+      <button class="suggestion-add" onclick="event.stopPropagation();logSuggestion(${i})">+ Thêm</button>
+    </div>`).join('');
+  grid.dataset.meals=JSON.stringify(top);
+}
+
+function logSuggestion(i){
+  const meals=JSON.parse(document.getElementById('suggestions-grid').dataset.meals||'[]');
+  const m=meals[i];
+  if(!m) return;
+  const prevTotal=state.meals.reduce((s,meal)=>s+meal.cal,0);
+  state.meals.push({name:m.name,cal:m.cal,p:m.p||0,c:m.c||0,f:m.f||0});
+  trackMeal(m.name,m.cal,m.p||0,m.c||0,m.f||0);
+  saveState(state);
+  render();
+  renderSuggestions();
+  document.getElementById('modal').classList.remove('open');
+  showToast('✓ '+m.name+' đã được thêm!');
+  const newTotal=state.meals.reduce((s,meal)=>s+meal.cal,0);
+  if(prevTotal<state.goal && newTotal>=state.goal){
+    setTimeout(()=>showCelebration(newTotal),400);
+  }
+}
+
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
 
 // State
 function getToday(){return new Date().toDateString()}
@@ -567,6 +872,7 @@ function openModal(){
   document.getElementById('weight-panel').classList.remove('show');
   document.getElementById('ingredients-section').style.display='none';
   document.getElementById('ingredient-list').innerHTML='';
+  renderVietFoods();
   document.getElementById('modal').classList.add('open');
   setTimeout(()=>document.getElementById('food-search').focus(),300);
 }
@@ -589,9 +895,12 @@ function addMeal(){
   }
   const prevTotal=state.meals.reduce((s,m)=>s+m.cal,0);
   state.meals.push({name,cal,p,c,f,ingredients:ingredients.length||null});
+  trackMeal(name,cal,p,c,f);
   saveState(state);
   render();
+  renderSuggestions();
   document.getElementById('modal').classList.remove('open');
+  showToast('✓ '+name+' đã được thêm!');
   const newTotal=state.meals.reduce((s,m)=>s+m.cal,0);
   if(prevTotal<state.goal && newTotal>=state.goal){
     setTimeout(()=>showCelebration(newTotal),400);
@@ -711,6 +1020,7 @@ document.getElementById('food-search').addEventListener('keydown',e=>{if(e.key==
 document.getElementById('weight-input').addEventListener('input',function(){updateWeight(this.value)});
 
 render();
+renderSuggestions();
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
 </body>
