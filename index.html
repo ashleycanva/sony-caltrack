@@ -10,9 +10,8 @@
   <title>CalTrack — Sony's Calorie Tracker</title>
   <link rel="manifest" href="manifest.json"/>
   <link rel="apple-touch-icon" href="icons/icon-192.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet"/>
   <style>
-    @import url('https://fonts.cdnfonts.com/css/cooper-black');
     :root{
       --navy:#185FA5;--navy-dark:#0C447C;--navy-light:#B5D4F4;--navy-pale:#E6F1FB;
       --gold:#EF9F27;--gold-dark:#BA7517;--gold-light:#FAC775;--gold-pale:#FAEEDA;
@@ -20,7 +19,7 @@
       --bg:#081828;--surface:#0C2243;--surface2:#122D52;--surface3:#1a3a6a;
       --text:#E8F2FC;--text-muted:#7BA8D4;--border:rgba(180,210,244,0.12);
       --danger:#E24B4A;--success:#4CAF50;
-      --font:'Cooper Black','Cooper','Copperplate','Palatino Linotype',serif;--mono:'DM Mono',monospace;
+      --font:'Josefin Sans',sans-serif;--mono:'DM Mono',monospace;
       --radius:16px;--radius-sm:10px;
     }
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -144,10 +143,46 @@
     .modal-add-btn:hover{background:var(--navy-dark)}
     /* Settings */
     .settings-modal{background:var(--surface);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;max-width:430px;border-top:1px solid var(--border);animation:slideUp 0.3s ease}
-    .goal-display{text-align:center;padding:20px 0;font-size:48px;font-weight:600;color:var(--gold);font-family:var(--mono)}
+    .goal-display{text-align:center;padding:20px 0;font-size:48px;font-weight:600;color:var(--pink);font-family:var(--mono)}
     .goal-sub{text-align:center;font-size:13px;color:var(--text-muted);margin-top:-12px;margin-bottom:20px}
     .goal-slider{width:100%;margin:16px 0;accent-color:var(--pink)}
     .goal-range-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted)}
+    /* History */
+    .nav-btn{background:var(--surface2);color:var(--text-muted);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .nav-btn:hover{border-color:var(--pink);color:var(--pink)}
+    .history-day{margin-bottom:16px}
+    .history-day-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--surface2);border-radius:var(--radius-sm);cursor:pointer;border:1px solid var(--border);transition:border-color 0.2s;margin-bottom:6px}
+    .history-day-header:hover{border-color:var(--pink)}
+    .history-day-date{font-size:13px;font-weight:600;color:var(--text)}
+    .history-day-cal{font-size:13px;font-weight:600;color:var(--pink);font-family:var(--mono)}
+    .history-day-bar{height:4px;background:var(--border);border-radius:2px;margin:6px 0 2px;overflow:hidden}
+    .history-day-fill{height:100%;border-radius:2px;background:var(--pink);transition:width 0.4s ease}
+    .history-day-meta{font-size:11px;color:var(--text-muted);margin-top:2px}
+    .history-meals{display:flex;flex-direction:column;gap:4px;padding:0 4px;overflow:hidden;transition:max-height 0.3s ease}
+    .history-meal-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--surface3);border-radius:8px;gap:10px}
+    .history-meal-name{font-size:13px;color:var(--text);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .history-meal-cal{font-size:12px;font-weight:600;color:var(--pink);font-family:var(--mono);flex-shrink:0}
+    .history-empty{text-align:center;padding:32px 20px;color:var(--text-muted);font-size:14px}
+    .history-goal-badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600;margin-left:8px}
+    .badge-reached{background:rgba(246,178,215,0.15);color:var(--pink)}
+    .badge-under{background:rgba(123,168,212,0.15);color:var(--text-muted)}
+    /* Celebration */
+    #celebration-modal{align-items:center;justify-content:center;z-index:200}
+    .celebration-modal{background:linear-gradient(145deg,#0C2243,#1a1040);border:1px solid rgba(246,178,215,0.3);border-radius:28px;padding:36px 28px;width:calc(100% - 40px);max-width:380px;text-align:center;position:relative;overflow:hidden;animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+    @keyframes popIn{from{opacity:0;transform:scale(0.7)}to{opacity:1;transform:scale(1)}}
+    .confetti-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+    .confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;animation:confettiFall linear forwards}
+    @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(500px) rotate(720deg);opacity:0}}
+    .celeb-emoji{font-size:64px;margin-bottom:12px;animation:bounce 0.8s ease infinite alternate}
+    @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+    .celeb-title{font-size:32px;font-weight:700;color:var(--pink);font-family:var(--font);margin-bottom:8px;letter-spacing:1px}
+    .celeb-sub{font-size:15px;color:var(--text);margin-bottom:16px;line-height:1.5}
+    .celeb-stat{background:rgba(246,178,215,0.1);border:1px solid rgba(246,178,215,0.2);border-radius:var(--radius-sm);padding:12px 20px;margin-bottom:16px;font-size:22px;font-weight:700;color:var(--pink);font-family:var(--mono)}
+    .celeb-message{font-size:14px;color:var(--text-muted);margin-bottom:24px;line-height:1.5}
+    .celeb-btn{background:var(--pink);color:#3a0a28;border:none;border-radius:var(--radius-sm);padding:14px 28px;font-size:15px;font-weight:700;font-family:var(--font);cursor:pointer;transition:transform 0.1s,background 0.2s;width:100%}
+    .celeb-btn:hover{background:var(--pink-dark);color:#fff}
+    .celeb-btn:active{transform:scale(0.97)}
+    .celeb-stars{position:absolute;inset:0;pointer-events:none}
   </style>
 </head>
 <body>
@@ -198,6 +233,7 @@
 </div>
 
 <div class="bottom-nav">
+  <button class="nav-btn" onclick="openHistory()">📅 History</button>
   <button class="log-btn" onclick="openModal()">+ Log a meal</button>
 </div>
 
@@ -268,6 +304,29 @@
   </div>
 </div>
 
+<!-- History Modal -->
+<div class="modal-backdrop" id="history-modal" onclick="closeOnBackdrop(event,'history-modal')">
+  <div class="modal" style="max-height:92vh">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Hành trình ăn kiêng gian khổ 😤</div>
+    <div class="modal-subtitle">Nhật ký các ngày trước</div>
+    <div id="history-list"></div>
+  </div>
+</div>
+
+<!-- Celebration Modal -->
+<div class="modal-backdrop" id="celebration-modal">
+  <div class="celebration-modal">
+    <div class="confetti-wrap" id="confetti-wrap"></div>
+    <div class="celeb-emoji">🎉</div>
+    <div class="celeb-title">Đủ calo rồi!</div>
+    <div class="celeb-sub">chồng iu đã đạt mục tiêu hôm nay 💪</div>
+    <div class="celeb-stat" id="celeb-stat"></div>
+    <div class="celeb-message">Ăn nữa là mập đít đó nha! 🙂‍↔️</div>
+    <button class="celeb-btn" onclick="closeCelebration()">Cảm ơn em yêu ❤️</button>
+  </div>
+</div>
+
 <!-- Settings Modal -->
 <div class="modal-backdrop" id="settings-modal" onclick="closeOnBackdrop(event,'settings-modal')">
   <div class="settings-modal">
@@ -280,7 +339,7 @@
     <br/>
     <button class="modal-add-btn" onclick="saveGoal()">Save goal</button>
     <br/><br/>
-    <button class="modal-add-btn" onclick="clearDay()" style="background:#1a1a18;border:1px solid rgba(226,75,74,0.4);color:#E24B4A;">Clear today's meals</button>
+    <button class="modal-add-btn" onclick="clearDay()" style="background:#1a1a18;border:1px solid rgba(226,75,74,0.4);color:#ffffff;">Clear today's meals</button>
   </div>
 </div>
 
@@ -289,9 +348,22 @@ const USDA_KEY='9yQeg5sYXrk56hNBnGAWhJYGUxEBg2JPcaOds7WI';
 
 // State
 function getToday(){return new Date().toDateString()}
+
+function loadHistory(){
+  const raw=localStorage.getItem('caltrack_history');
+  return raw?JSON.parse(raw):{};
+}
+function saveHistory(h){localStorage.setItem('caltrack_history',JSON.stringify(h))}
+
 function loadState(){
   const raw=localStorage.getItem('caltrack_v3');
   const s=raw?JSON.parse(raw):{};
+  if(s.date && s.date!==getToday() && s.meals && s.meals.length>0){
+    // Archive previous day before resetting
+    const history=loadHistory();
+    history[s.date]={meals:s.meals,goal:s.goal||2000,total:s.meals.reduce((t,m)=>t+m.cal,0)};
+    saveHistory(history);
+  }
   if(s.date!==getToday()) return{date:getToday(),meals:[],goal:s.goal||2000};
   return s;
 }
@@ -313,7 +385,7 @@ function render(){
   document.getElementById('total-cal').textContent=totalCal.toLocaleString();
   document.getElementById('ring-pct').textContent=pct+'%';
   document.getElementById('ring-arc').style.strokeDashoffset=offset;
-  document.getElementById('ring-arc').style.stroke=pct>=100?'#E24B4A':'#F6B2D7';
+  document.getElementById('ring-arc').style.stroke='#F6B2D7';
   document.getElementById('rem-pill').textContent=remaining.toLocaleString()+' left';
   document.getElementById('goal-display').textContent=state.goal.toLocaleString();
   document.getElementById('macro-protein').textContent=Math.round(totalP)+'g';
@@ -325,7 +397,7 @@ function render(){
   document.getElementById('meal-count').textContent=state.meals.length+' logged';
   const list=document.getElementById('meal-list');
   if(!state.meals.length){
-    list.innerHTML='<div class="empty-state"><div class="empty-icon">🍽</div><div>No meals logged yet.<br>Tap the button below to start!</div></div>';
+    list.innerHTML='<div class="empty-state"><div class="empty-icon">🍽</div><div>Chưa chịu ăn nữa hả,<br>bấm vô đây cho tui 👇</div></div>';
   } else {
     list.innerHTML=state.meals.map((m,i)=>`
       <div class="meal-item">
@@ -515,10 +587,45 @@ function addMeal(){
     setTimeout(()=>document.getElementById('meal-cal').style.borderColor='',1500);
     return;
   }
+  const prevTotal=state.meals.reduce((s,m)=>s+m.cal,0);
   state.meals.push({name,cal,p,c,f,ingredients:ingredients.length||null});
   saveState(state);
   render();
   document.getElementById('modal').classList.remove('open');
+  const newTotal=state.meals.reduce((s,m)=>s+m.cal,0);
+  if(prevTotal<state.goal && newTotal>=state.goal){
+    setTimeout(()=>showCelebration(newTotal),400);
+  }
+}
+
+function showCelebration(total){
+  document.getElementById('celeb-stat').textContent=total.toLocaleString()+' / '+state.goal.toLocaleString()+' kcal';
+  document.getElementById('celebration-modal').classList.add('open');
+  spawnConfetti();
+}
+
+function closeCelebration(){
+  document.getElementById('celebration-modal').classList.remove('open');
+  document.getElementById('confetti-wrap').innerHTML='';
+}
+
+function spawnConfetti(){
+  const wrap=document.getElementById('confetti-wrap');
+  wrap.innerHTML='';
+  const colors=['#F6B2D7','#EF9F27','#B5D4F4','#fff','#c97aaa','#FAC775','#E6F1FB'];
+  for(let i=0;i<60;i++){
+    const el=document.createElement('div');
+    el.className='confetti-piece';
+    el.style.left=Math.random()*100+'%';
+    el.style.top='-10px';
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.width=(Math.random()*8+4)+'px';
+    el.style.height=(Math.random()*8+4)+'px';
+    el.style.borderRadius=Math.random()>0.5?'50%':'2px';
+    el.style.animationDuration=(Math.random()*2+1.5)+'s';
+    el.style.animationDelay=(Math.random()*1)+'s';
+    wrap.appendChild(el);
+  }
 }
 
 function deleteMeal(i){state.meals.splice(i,1);saveState(state);render()}
@@ -537,6 +644,67 @@ function saveGoal(){
 function clearDay(){
   if(confirm('Clear all meals for today?')){state.meals=[];saveState(state);render();document.getElementById('settings-modal').classList.remove('open')}
 }
+function openHistory(){
+  renderHistory();
+  document.getElementById('history-modal').classList.add('open');
+}
+
+function renderHistory(){
+  const history=loadHistory();
+  const container=document.getElementById('history-list');
+  const days=Object.keys(history).sort((a,b)=>new Date(b)-new Date(a));
+
+  // Also show today if there are meals
+  const allDays=[];
+  if(state.meals.length>0){
+    allDays.push({dateStr:state.date,data:{meals:state.meals,goal:state.goal,total:state.meals.reduce((t,m)=>t+m.cal,0)},isToday:true});
+  }
+  days.forEach(d=>allDays.push({dateStr:d,data:history[d],isToday:false}));
+
+  if(!allDays.length){
+    container.innerHTML='<div class="history-empty">📭<br><br>Chưa có lịch sử nào<br><span style="font-size:12px">Ăn gì đi rồi sẽ có!</span></div>';
+    return;
+  }
+
+  container.innerHTML=allDays.map((entry,idx)=>{
+    const {dateStr,data,isToday}=entry;
+    const d=new Date(dateStr);
+    const label=isToday?'Hôm nay':d.toLocaleDateString('vi-VN',{weekday:'long',day:'numeric',month:'numeric',year:'numeric'});
+    const pct=Math.min(100,Math.round((data.total/data.goal)*100));
+    const reached=data.total>=data.goal;
+    return`<div class="history-day">
+      <div class="history-day-header" onclick="toggleDay(${idx})">
+        <div>
+          <div class="history-day-date">${label} ${isToday?'☀️':''}</div>
+          <div class="history-day-bar"><div class="history-day-fill" style="width:${pct}%"></div></div>
+          <div class="history-day-meta">${data.meals.length} bữa · mục tiêu ${data.goal.toLocaleString()} kcal</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;margin-left:12px">
+          <div class="history-day-cal">${data.total.toLocaleString()}</div>
+          <div class="history-goal-badge ${reached?'badge-reached':'badge-under'}">${reached?'✓ Đạt':'Chưa đạt'}</div>
+        </div>
+      </div>
+      <div class="history-meals" id="history-day-${idx}" style="max-height:0">
+        ${data.meals.map(m=>`<div class="history-meal-item">
+          <span class="history-meal-name">🍽 ${m.name}</span>
+          <span class="history-meal-cal">${m.cal} kcal</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleDay(idx){
+  const el=document.getElementById('history-day-'+idx);
+  if(el.style.maxHeight==='0px'||el.style.maxHeight==='0'){
+    el.style.maxHeight=el.scrollHeight+'px';
+    el.style.marginBottom='8px';
+  } else {
+    el.style.maxHeight='0';
+    el.style.marginBottom='0';
+  }
+}
+
 function closeOnBackdrop(e,id){if(e.target.id===id)document.getElementById(id).classList.remove('open')}
 
 document.getElementById('food-search').addEventListener('keydown',e=>{if(e.key==='Enter')doSearch()});
