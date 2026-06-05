@@ -16,11 +16,19 @@
       --navy:#ffffff;--navy-dark:#e0e0e0;--navy-light:#ffffff;--navy-pale:#f5f5f5;
       --gold:#EF9F27;--gold-dark:#BA7517;--gold-light:#FAC775;--gold-pale:#FAEEDA;
       --pink:#F6B2D7;--pink-dark:#c97aaa;--pink-pale:#fdf0f7;
-      --bg:#f2f4f7;--surface:#ffffff;--surface2:#f0f2f5;--surface3:#e8eaed;
-      --text:#1a1a2e;--text-muted:#6b7280;--border:rgba(0,0,0,0.08);
-      --danger:#E24B4A;--success:#4CAF50;
+      --coral:#FF6B6B;--coral-light:#FF8E8E;--coral-pale:#FFF0F0;
+      --teal:#00C9A7;--teal-light:#33D4B8;--teal-pale:#E6FAF7;
+      --purple:#9B5DE5;--purple-light:#B47FEA;--purple-pale:#F3ECFD;
+      --bg:linear-gradient(135deg,#FFF8F5 0%,#F5F0FF 50%,#F0FBF8 100%);
+      --bg-solid:#FFF8F5;
+      --surface:#ffffff;--surface2:#FAF8FF;--surface3:#F0EFF8;
+      --text:#1a1a2e;--text-muted:#7c7a8e;--border:rgba(0,0,0,0.06);
+      --danger:#FF6B6B;--success:#00C9A7;
       --font:'Josefin Sans',sans-serif;--mono:'DM Mono',monospace;
       --radius:16px;--radius-sm:10px;
+      --shadow-sm:0 2px 8px rgba(155,93,229,0.08);
+      --shadow-md:0 8px 24px rgba(155,93,229,0.12);
+      --shadow-lg:0 16px 40px rgba(155,93,229,0.16);
     }
     *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
     body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;max-width:430px;margin:0 auto;padding-bottom:100px;overscroll-behavior:none}
@@ -68,7 +76,7 @@
     .meal-delete:hover{color:var(--danger)}
     .empty-state{text-align:center;padding:32px 20px;color:var(--text-muted);font-size:14px}
     .empty-icon{font-size:32px;margin-bottom:8px;opacity:0.4}
-    .date-badge{display:inline-flex;align-items:center;gap:6px;background:var(--navy-pale);color:var(--navy-dark);font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;margin-bottom:16px}
+    .date-badge{display:inline-flex;align-items:center;gap:6px;background:#e8eaed;color:#1a1a2e;font-size:12px;font-weight:600;padding:4px 10px;border-radius:20px;margin-bottom:16px}
     /* Bottom Nav */
     .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--surface);border-top:1px solid var(--border);padding:12px 20px 28px;display:flex;gap:10px;box-shadow:0 -4px 20px rgba(0,0,0,0.06)}
     .log-btn{flex:1;background:var(--pink);color:#3a0a28;border:none;border-radius:var(--radius-sm);padding:14px;font-size:15px;font-weight:600;font-family:var(--font);cursor:pointer;transition:background 0.2s,transform 0.1s}
@@ -189,15 +197,14 @@
     .suggestion-cal{font-size:13px;font-weight:700;color:var(--pink);font-family:var(--mono);flex-shrink:0}
     .suggestion-add{background:var(--pink);color:#3a0a28;border:none;border-radius:6px;padding:5px 10px;font-size:12px;font-weight:700;font-family:var(--font);cursor:pointer;flex-shrink:0}
     /* Vietnamese Quick Add */
-    .viet-section{margin-bottom:4px}
-    .viet-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px}
-    .viet-grid{display:flex;flex-direction:column;gap:10px}
-    .viet-cat{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
-    .viet-cat-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;user-select:none}
-    .viet-cat-header:hover{background:rgba(246,178,215,0.06)}
-    .viet-cat-title{font-size:13px;font-weight:600;color:var(--text)}
-    .viet-cat-arrow{font-size:10px;color:var(--pink)}
-    .viet-cat-items{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+    .quick-section{margin-bottom:12px}
+    .quick-label{font-size:11px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;font-weight:600}
+    .quick-bubbles{display:flex;flex-wrap:wrap;gap:6px}
+    .quick-bubble{background:rgba(246,178,215,0.12);border:1px solid rgba(246,178,215,0.25);border-radius:30px;padding:6px 12px;cursor:pointer;transition:all 0.15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+    .quick-bubble:hover{background:rgba(246,178,215,0.22);border-color:rgba(246,178,215,0.5);transform:translateY(-1px)}
+    .quick-bubble:active{transform:scale(0.96)}
+    .quick-bubble-name{font-size:12px;color:rgba(255,255,255,0.9);font-weight:600}
+    .quick-bubble-cal{font-size:11px;color:var(--pink);font-weight:700;font-family:var(--mono)}
     .viet-card{background:var(--surface);padding:10px 12px;cursor:pointer;transition:background 0.15s;display:flex;justify-content:space-between;align-items:center;gap:6px}
     .viet-card:hover{background:rgba(246,178,215,0.06)}
     .viet-card:active{background:rgba(246,178,215,0.12)}
@@ -252,9 +259,134 @@
     .celeb-btn:hover{background:var(--pink-dark);color:#fff}
     .celeb-btn:active{transform:scale(0.97)}
     .celeb-stars{position:absolute;inset:0;pointer-events:none}
+
+    /* ═══════════════════════════════════════
+       DARK PURPLE GLASS THEME
+    ═══════════════════════════════════════ */
+    /* Background — deep purple matching settings modal */
+    body{background:#12082a!important;min-height:100vh}
+    body::before{content:'';position:fixed;inset:0;z-index:-2;
+      background:radial-gradient(ellipse 80% 60% at 50% 0%,#2a0d5e 0%,#12082a 60%)}
+    body::after{content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+      background:radial-gradient(ellipse 50% 40% at 15% 30%,rgba(246,178,215,0.12) 0%,transparent 55%),
+        radial-gradient(ellipse 40% 50% at 85% 70%,rgba(160,100,255,0.1) 0%,transparent 55%)}
+    /* Floating orbs */
+    .orb1{background:rgba(246,178,215,0.18)!important;filter:blur(80px)!important}
+    .orb2{background:rgba(160,100,255,0.15)!important;filter:blur(80px)!important}
+    .orb3{background:rgba(246,178,215,0.1)!important;filter:blur(60px)!important}
+    /* Header glass */
+    .header{background:rgba(30,12,60,0.9)!important;backdrop-filter:blur(24px)!important;-webkit-backdrop-filter:blur(24px)!important;border-bottom:1px solid rgba(246,178,215,0.15)!important;box-shadow:0 4px 24px rgba(0,0,0,0.4)!important}
+    .ring-section{background:rgba(30,12,60,0.7)!important;backdrop-filter:blur(16px)!important;border-bottom:1px solid rgba(246,178,215,0.1)!important}
+    .macros{background:rgba(20,8,45,0.6)!important;backdrop-filter:blur(10px)!important}
+    /* 3D macro cards — very visible tilt effect */
+    .macro-card{
+      background:#ffffff!important;
+      border:none!important;
+      border-radius:16px!important;
+      box-shadow:
+        0 8px 24px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.9)!important;
+      transform:perspective(600px) rotateX(0deg) rotateY(0deg);
+      transition:transform 0.3s ease,box-shadow 0.3s ease;
+      cursor:default
+    }
+    .macro-card:hover{
+      transform:perspective(600px) rotateX(-8deg) rotateY(3deg) translateY(-5px) scale(1.05)!important;
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.5),
+        0 0 0 2px rgba(246,178,215,0.4)!important
+    }
+    /* 3D meal cards */
+    .meal-item{
+      background:#ffffff!important;
+      border:none!important;
+      box-shadow:0 4px 16px rgba(0,0,0,0.25)!important;
+      transition:transform 0.25s ease,box-shadow 0.25s ease
+    }
+    .meal-item:hover{
+      transform:translateX(6px) translateY(-2px)!important;
+      box-shadow:-4px 8px 24px rgba(246,178,215,0.2),0 8px 24px rgba(0,0,0,0.3)!important
+    }
+    /* Text colors */
+    .greeting{color:rgba(255,255,255,0.6)!important}
+    .username{color:#ffffff!important;text-shadow:0 0 20px rgba(246,178,215,0.3)}
+    .cal-consumed{color:#ffffff!important}
+    .cal-unit{color:rgba(255,255,255,0.5)!important}
+    .rem-text{color:rgba(255,255,255,0.5)!important}
+    .macro-val{color:#1a1a2e!important;text-shadow:none}
+    .macro-lbl{color:#6b7280!important}
+    .section-title{color:rgba(255,255,255,0.4)!important}
+    .meal-count{color:rgba(255,255,255,0.4)!important}
+    .section{background:transparent!important}
+    .meal-name{color:#1a1a2e!important}
+    .meal-macros-mini{color:#9ca3af!important}
+    .meal-delete{color:#d1d5db!important}
+    .empty-state{color:rgba(255,255,255,0.38)!important}
+    .date-badge{background:rgba(246,178,215,0.12)!important;color:rgba(255,255,255,0.75)!important;border:1px solid rgba(246,178,215,0.2)!important;backdrop-filter:blur(8px)}
+    .macro-bar{background:rgba(255,255,255,0.08)!important}
+    /* Bottom nav */
+    .bottom-nav{background:rgba(18,8,42,0.92)!important;backdrop-filter:blur(24px)!important;border-top:1px solid rgba(246,178,215,0.12)!important;box-shadow:0 -4px 30px rgba(0,0,0,0.5)!important}
+    .nav-btn{background:rgba(255,255,255,0.08)!important;color:rgba(255,255,255,0.75)!important;border:1px solid rgba(255,255,255,0.12)!important}
+    .log-btn{box-shadow:0 4px 20px rgba(246,178,215,0.35),inset 0 1px 0 rgba(255,255,255,0.2)!important}
+    /* Modal */
+    .modal,.settings-modal{background:rgba(18,8,42,0.92)!important;backdrop-filter:blur(32px)!important;-webkit-backdrop-filter:blur(32px)!important;border-top:1px solid rgba(246,178,215,0.25)!important}
+    .modal-title{color:#ffffff!important}
+    .modal-subtitle,.input-label,.divider-text,.search-hint{color:rgba(255,255,255,0.45)!important}
+    .search-input,.input-field,.weight-input{background:rgba(255,255,255,0.07)!important;border:1px solid rgba(255,255,255,0.12)!important;color:#ffffff!important}
+    .search-input::placeholder,.input-field::placeholder{color:rgba(255,255,255,0.28)!important}
+    .search-btn{background:rgba(255,255,255,0.06)!important;border:1px solid rgba(255,255,255,0.1)!important;color:rgba(255,255,255,0.6)!important}
+    .search-icon{color:rgba(255,255,255,0.3)!important}
+    .divider-line{background:rgba(255,255,255,0.08)!important}
+    .result-item{background:rgba(255,255,255,0.06)!important;border:1px solid rgba(255,255,255,0.1)!important;transition:all 0.15s}
+    .result-item:hover{background:rgba(246,178,215,0.1)!important;border-color:rgba(246,178,215,0.3)!important}
+    .result-name{color:#ffffff!important}
+    .result-sub,.result-serving{color:rgba(255,255,255,0.42)!important}
+    .viet-cat{background:rgba(255,255,255,0.05)!important;border:1px solid rgba(255,255,255,0.09)!important;backdrop-filter:blur(8px)}
+    .viet-cat-title{color:#ffffff!important}
+    .viet-card:hover{background:rgba(246,178,215,0.06)!important}
+    .viet-card-name{color:rgba(255,255,255,0.88)!important}
+    .viet-card-sub{color:rgba(255,255,255,0.38)!important}
+    .weight-panel{background:rgba(255,255,255,0.06)!important;border-color:rgba(246,178,215,0.18)!important}
+    .weight-food-name,.weight-unit{color:rgba(255,255,255,0.7)!important}
+    .ingredient-item{background:rgba(255,255,255,0.06)!important}
+    .ingredient-name{color:rgba(255,255,255,0.85)!important}
+    .ingredient-detail{color:rgba(255,255,255,0.38)!important}
+    .ingredients-total{background:rgba(246,178,215,0.07)!important;border-color:rgba(246,178,215,0.18)!important}
+    .total-label{color:rgba(255,255,255,0.5)!important}
+    .selected-preview{background:rgba(246,178,215,0.06)!important;border-color:rgba(246,178,215,0.16)!important}
+    .preview-name{color:#ffffff!important}
+    .preview-macro{color:rgba(255,255,255,0.48)!important}
+    .goal-display{color:var(--pink)!important;text-shadow:0 0 30px rgba(246,178,215,0.5)}
+    .goal-sub,.goal-range-labels{color:rgba(255,255,255,0.42)!important}
+    .suggestion-card{background:rgba(255,255,255,0.07)!important;border:1px solid rgba(255,255,255,0.1)!important;backdrop-filter:blur(10px);transition:all 0.2s}
+    .suggestion-card:hover{background:rgba(246,178,215,0.08)!important;transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.3)!important}
+    .suggestion-name{color:#ffffff!important}
+    .suggestion-meta{color:rgba(255,255,255,0.48)!important}
+    .see-all-btn{color:var(--pink)!important}
+    .fullpage{background:#12082a!important}
+    .fullpage-header{background:rgba(30,12,60,0.9)!important;backdrop-filter:blur(20px)!important;border:none!important}
+    .fullpage-title{color:#ffffff!important}
+    .back-btn{color:var(--pink)!important}
+    .history-day-header{background:rgba(255,255,255,0.07)!important;border:1px solid rgba(255,255,255,0.09)!important;backdrop-filter:blur(8px)}
+    .history-day-date{color:#ffffff!important}
+    .history-day-meta{color:rgba(255,255,255,0.38)!important}
+    .history-meal-item{background:rgba(255,255,255,0.05)!important}
+    .history-meal-name{color:rgba(255,255,255,0.82)!important}
+    .history-empty{color:rgba(255,255,255,0.32)!important}
+    .all-suggestion-card{background:rgba(255,255,255,0.07)!important;border:1px solid rgba(255,255,255,0.09)!important;backdrop-filter:blur(8px)}
+    .all-suggestion-name{color:#ffffff!important}
+    .all-suggestion-meta{color:rgba(255,255,255,0.42)!important}
+    .shame-modal{background:rgba(18,8,42,0.95)!important;backdrop-filter:blur(30px)!important}
+    .shame-sub{color:rgba(255,255,255,0.82)!important}
+    .shame-msgs{color:rgba(255,255,255,0.52)!important}
+    .shame-stat{background:rgba(226,75,74,0.1)!important;border-color:rgba(226,75,74,0.2)!important}
   </style>
 </head>
 <body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
 
 <div class="header">
   <div class="header-top">
@@ -324,10 +456,10 @@
     <div class="modal-title">Log a meal</div>
     <div class="modal-subtitle">Search ingredients and adjust weight, or enter manually</div>
 
-    <!-- Vietnamese Quick Add -->
-    <div class="viet-section">
-      <div class="viet-label">🇻🇳 Món Việt hay ăn</div>
-      <div class="viet-grid" id="viet-grid"></div>
+    <!-- Quick picks bubbles -->
+    <div class="quick-section">
+      <div class="quick-label">Hay ăn 🔥</div>
+      <div class="quick-bubbles" id="quick-bubbles"></div>
     </div>
 
     <div class="divider"><div class="divider-line"></div><div class="divider-text">hoặc tìm nguyên liệu</div><div class="divider-line"></div></div>
@@ -515,39 +647,52 @@ const VIET_FOODS=VIET_CATEGORIES.flatMap(c=>c.foods);
 let openCats={};
 
 function renderVietFoods(){
-  const grid=document.getElementById('viet-grid');
-  let html='';
-  let globalIdx=0;
-  VIET_CATEGORIES.forEach((cat,ci)=>{
-    const isOpen=openCats[ci]===true; // default closed
-    html+=`<div class="viet-cat">
-      <div class="viet-cat-header" onclick="toggleCat(${ci})">
-        <span class="viet-cat-title">${cat.cat}</span>
-        <span class="viet-cat-arrow" id="viet-arrow-${ci}">${isOpen?'▲':'▼'}</span>
-      </div>
-      <div class="viet-cat-items" id="viet-cat-${ci}" style="display:${isOpen?'grid':'none'}">`;
-    cat.foods.forEach(f=>{
-      html+=`<div class="viet-card" onclick="quickAddViet(${globalIdx})">
-        <div class="viet-card-left">
-          <div class="viet-card-name">${f.name}</div>
-          <div class="viet-card-sub">${f.sub}</div>
-        </div>
-        <div class="viet-card-cal">${f.cal}</div>
-      </div>`;
-      globalIdx++;
-    });
-    html+=`</div></div>`;
-  });
-  grid.innerHTML=html;
+  const bubbles = document.getElementById('quick-bubbles');
+  if(!bubbles) return;
+
+  // Get top frequent meals (up to 5)
+  const freq = loadFrequency();
+  const top = Object.values(freq).sort((a,b)=>b.count-a.count).slice(0,5);
+
+  // Fallback preset picks if not enough history
+  const PRESETS = [
+    {name:'Phở bò',cal:450,p:28,c:55,f:10},
+    {name:'Cơm tấm',cal:620,p:35,c:72,f:18},
+    {name:'Bánh mì',cal:380,p:18,c:45,f:12},
+    {name:'Bún bò',cal:480,p:30,c:52,f:14},
+    {name:'Cháo gà',cal:280,p:20,c:35,f:6},
+  ];
+
+  const picks = top.length >= 2
+    ? top.map(m=>({name:m.name,cal:m.cal,p:m.p||0,c:m.c||0,f:m.f||0}))
+    : PRESETS;
+
+  bubbles.innerHTML = picks.slice(0,5).map((item,i)=>`
+    <div class="quick-bubble" onclick="quickBubbleAdd(${i})" data-idx="${i}">
+      <span class="quick-bubble-name">${item.name.split(' (')[0]}</span>
+      <span class="quick-bubble-cal">${item.cal}</span>
+    </div>`).join('');
+  bubbles.dataset.picks = JSON.stringify(picks.slice(0,5));
 }
 
-function toggleCat(ci){
-  const el=document.getElementById('viet-cat-'+ci);
-  const arrow=document.getElementById('viet-arrow-'+ci);
-  const isOpen=el.style.display!=='none';
-  el.style.display=isOpen?'none':'grid';
-  arrow.textContent=isOpen?'▼':'▲';
-  openCats[ci]=!isOpen;
+function quickBubbleAdd(i){
+  const picks = JSON.parse(document.getElementById('quick-bubbles').dataset.picks || '[]');
+  const item = picks[i];
+  if(!item) return;
+  const prevTotal = state.meals.reduce((s,m)=>s+m.cal,0);
+  state.meals.push({name:item.name.split(' (')[0], cal:item.cal, p:item.p||0, c:item.c||0, f:item.f||0});
+  trackMeal(item.name, item.cal, item.p||0, item.c||0, item.f||0);
+  saveState(state);
+  render();
+  renderSuggestions();
+  document.getElementById('modal').classList.remove('open');
+  showToast('✓ ' + item.name.split(' (')[0] + ' đã được thêm!');
+  const newTotal = state.meals.reduce((s,m)=>s+m.cal,0);
+  if(prevTotal < state.goal && newTotal >= state.goal){
+    setTimeout(()=>showCelebration(newTotal),400);
+  } else if(newTotal > state.goal){
+    setTimeout(()=>showShameBell(newTotal),400);
+  }
 }
 
 function quickAddViet(i){
