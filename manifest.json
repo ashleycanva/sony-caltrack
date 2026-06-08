@@ -2,10 +2,11 @@
   "name": "CalTrack — Sony's Calorie Tracker",
   "short_name": "CalTrack",
   "description": "A personal daily calorie and macro tracker for Sony",
-  "start_url": "/",
+  "start_url": "/sony-caltrack/",
+  "scope": "/sony-caltrack/",
   "display": "standalone",
-  "background_color": "#081828",
-  "theme_color": "#0C2E52",
+  "background_color": "#12082a",
+  "theme_color": "#12082a",
   "orientation": "portrait",
   "icons": [
     {
