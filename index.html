@@ -920,22 +920,33 @@ function render(){
 }
 
 // Search
-async function doSearch(){
+async function doSearch(attempt=1){
   const query=document.getElementById('food-search').value.trim();
   if(!query) return;
   const spinner=document.getElementById('search-spinner');
   const icon=document.getElementById('search-icon');
   const container=document.getElementById('search-results');
   spinner.classList.add('active'); icon.classList.add('hidden');
-  container.innerHTML='';
+  if(attempt===1) container.innerHTML='';
   document.getElementById('weight-panel').classList.remove('show');
+  const controller=new AbortController();
+  const timeout=setTimeout(()=>controller.abort(),8000);
   try{
     const url=`https://api.nal.usda.gov/fdc/v1/foods/search?query=${encodeURIComponent(query)}&pageSize=8&dataType=Foundation,SR%20Legacy,Survey%20(FNDDS)&api_key=${USDA_KEY}`;
-    const res=await fetch(url);
+    const res=await fetch(url,{signal:controller.signal});
+    clearTimeout(timeout);
+    if(!res.ok) throw new Error('API error '+res.status);
     const data=await res.json();
     displayResults(data.foods||[]);
   } catch(e){
-    container.innerHTML='<div class="no-results">Search failed. Check connection or use manual entry.</div>';
+    clearTimeout(timeout);
+    if(attempt<3){
+      container.innerHTML=`<div class="no-results">Retrying... (${attempt}/3)</div>`;
+      await new Promise(r=>setTimeout(r,1200*attempt));
+      return doSearch(attempt+1);
+    }
+    const msg=e.name==='AbortError'?'Request timed out.':'Search failed.';
+    container.innerHTML=`<div class="no-results">${msg} Try again or enter manually below.</div>`;
   } finally{
     spinner.classList.remove('active'); icon.classList.remove('hidden');
   }
